@@ -1,6 +1,7 @@
 'use client';
 
 import { DevisFormData, Nuisible, Urgence } from '@/types';
+import { ArrowRight, ArrowLeft } from 'lucide-react';
 
 interface Step2Props {
   data: Partial<DevisFormData>;
@@ -29,62 +30,62 @@ export default function Step2({ data, updateData, onNext, onPrev }: Step2Props) 
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2 className="text-xl font-semibold mb-4">Détails de l'intervention</h2>
-      
-      <div className="mb-4">
-        <label className="block text-gray-700 mb-2">
+    <form onSubmit={handleSubmit} className="space-y-6 animate-fade-in-up">
+      <div>
+        <label className="block font-mono text-[11px] uppercase tracking-[0.15em] text-white/50 mb-3">
           Types de nuisibles * (Plusieurs choix possibles)
         </label>
         <div className="space-y-2">
           {nuisiblesList.map((nuisible) => (
-            <label key={nuisible} className="flex items-center">
+            <label key={nuisible} className="flex items-center gap-3 p-3 bg-[#1A1A1A] border border-white/[0.06] rounded-lg cursor-pointer hover:border-[#C9A84C]/30 transition-all duration-200">
               <input
                 type="checkbox"
                 checked={data.nuisibles?.includes(nuisible) || false}
                 onChange={() => handleNuisibleChange(nuisible)}
-                className="mr-2"
+                className="w-4 h-4 accent-[#C9A84C]"
               />
-              {nuisible}
+              <span className="text-white text-sm">{nuisible}</span>
             </label>
           ))}
         </div>
       </div>
 
-      <div className="mb-6">
-        <label className="block text-gray-700 mb-2">
+      <div>
+        <label className="block font-mono text-[11px] uppercase tracking-[0.15em] text-white/50 mb-3">
           Type d'urgence *
         </label>
         <div className="space-y-2">
           {urgenceList.map((urgence) => (
-            <label key={urgence} className="flex items-center">
+            <label key={urgence} className="flex items-center gap-3 p-3 bg-[#1A1A1A] border border-white/[0.06] rounded-lg cursor-pointer hover:border-[#C9A84C]/30 transition-all duration-200">
               <input
                 type="radio"
                 name="urgence"
                 value={urgence}
                 checked={data.urgence === urgence}
                 onChange={(e) => updateData({ urgence: e.target.value as Urgence })}
-                className="mr-2"
+                className="w-4 h-4 accent-[#C9A84C]"
               />
-              {urgence}
+              <span className="text-white text-sm">{urgence}</span>
             </label>
           ))}
         </div>
       </div>
 
-      <div className="flex space-x-4">
+      <div className="flex gap-4">
         <button
           type="button"
           onClick={onPrev}
-          className="flex-1 bg-gray-300 text-gray-700 py-2 rounded hover:bg-gray-400 transition"
+          className="flex-1 bg-white/[0.06] text-white py-3 rounded-lg font-black uppercase tracking-[0.15em] text-sm flex items-center justify-center gap-2 hover:bg-white/[0.1] transition-all duration-300 group"
         >
+          <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
           Précédent
         </button>
         <button
           type="submit"
-          className="flex-1 bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+          className="flex-1 bg-[#C9A84C] text-black py-3 rounded-lg font-black uppercase tracking-[0.15em] text-sm flex items-center justify-center gap-2 hover:bg-[#E6C76A] transition-all duration-300 group"
         >
           Suivant
+          <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
         </button>
       </div>
     </form>

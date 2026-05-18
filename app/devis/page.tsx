@@ -5,6 +5,7 @@ import Step1 from '@/components/Step1';
 import Step2 from '@/components/Step2';
 import Step3 from '@/components/Step3';
 import { DevisFormData } from '@/types';
+import { Shield, Star, Zap, CheckCircle, ArrowRight } from 'lucide-react';
 
 export default function DevisPage() {
   const [step, setStep] = useState(1);
@@ -41,68 +42,114 @@ export default function DevisPage() {
 
   if (result?.success && step === 4) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100 flex items-center justify-center p-4">
-        <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center transform animate-fade-in-up">
-          <div className="w-24 h-24 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-            <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-            </svg>
+      <div className="min-h-screen bg-[#0A0A0A] flex items-center justify-center p-4">
+        <div className="relative max-w-md w-full">
+          <div className="absolute -top-20 -right-20 w-40 h-40 bg-[#C9A84C] rounded-full mix-blend-multiply filter blur-3xl opacity-20" />
+          <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-[#C9A84C] rounded-full mix-blend-multiply filter blur-3xl opacity-20" />
+          <div className="relative bg-[#0E0E0E] border border-white/[0.06] rounded-2xl p-8 text-center">
+            <div className="w-20 h-20 bg-gradient-to-r from-[#C9A84C] to-[#E6C76A] rounded-full flex items-center justify-center mx-auto mb-6">
+              <CheckCircle size={40} className="text-black" />
+            </div>
+            <h2 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+              Demande envoyée !
+            </h2>
+            <p className="text-white/40 mb-4 font-mono text-sm">Votre numéro de suivi :</p>
+            <div className="bg-[#1A1A1A] border border-[#C9A84C]/20 rounded-xl p-4 mb-6">
+              <code className="text-lg font-mono text-[#C9A84C]">{result.id}</code>
+            </div>
+            <button
+              onClick={() => window.location.href = '/'}
+              className="w-full bg-[#C9A84C] text-black py-3 rounded-lg font-black uppercase tracking-[0.15em] text-sm hover:bg-[#E6C76A] transition-all duration-300"
+            >
+              Retour à l'accueil
+            </button>
           </div>
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">Demande envoyée !</h2>
-          <p className="text-gray-600 mb-4">Votre numéro de suivi :</p>
-          <div className="bg-gray-100 p-3 rounded-lg mb-6">
-            <code className="text-lg font-mono text-purple-600">{result.id}</code>
-          </div>
-          <button
-            onClick={() => window.location.href = '/'}
-            className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition transform hover:scale-105"
-          >
-            Retour à l'accueil
-          </button>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 py-12 px-4">
+    <div className="min-h-screen bg-[#0A0A0A] py-20 px-4">
+      <div className="relative overflow-hidden mb-12">
+        <div className="absolute inset-0">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#C9A84C] rounded-full mix-blend-multiply filter blur-3xl opacity-10" />
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-[#C9A84C] rounded-full mix-blend-multiply filter blur-3xl opacity-10" />
+        </div>
+        <div className="relative text-center max-w-3xl mx-auto px-4">
+          <div className="inline-flex items-center gap-2 px-4 py-2 border border-[#C9A84C]/20 rounded-full mb-6">
+            <Shield size={14} className="text-[#C9A84C]" />
+            <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[#C9A84C]">Devis gratuit</span>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-black text-white mb-4" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+            Demande de devis
+          </h1>
+          <p className="text-white/40 font-mono text-sm max-w-md mx-auto">
+            Remplissez ce formulaire et nous vous recontacterons sous 24h
+          </p>
+        </div>
+      </div>
+
       <div className="max-w-3xl mx-auto">
-        <div className="bg-white rounded-2xl shadow-2xl overflow-hidden transform animate-fade-in-up">
-          <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 px-8 py-10 text-white relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32"></div>
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full -ml-24 -mb-24"></div>
-            <div className="relative z-10">
-              <h1 className="text-3xl font-bold text-center">Demande de devis</h1>
-              <p className="text-center text-blue-100 mt-2">Gratuit • Rapide • Sans engagement</p>
-              <div className="flex justify-center mt-8 space-x-4">
+        <div className="relative">
+          <div className="absolute -inset-1 bg-gradient-to-r from-[#C9A84C]/20 to-transparent rounded-3xl blur-xl opacity-30" />
+          <div className="relative bg-[#0E0E0E] border border-white/[0.06] rounded-2xl overflow-hidden">
+            <div className="h-1 bg-white/[0.06]">
+              <div className="h-full bg-[#C9A84C] transition-all duration-500" style={{ width: `${(step / 3) * 100}%` }} />
+            </div>
+
+            <div className="border-b border-white/[0.06] px-6 py-8 md:px-8">
+              <div className="flex justify-between items-center">
                 {[1, 2, 3].map((s) => (
-                  <div key={s} className="flex items-center">
-                    <div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-300 ${
-                      s === step 
-                        ? 'bg-white text-purple-600 shadow-lg transform scale-110' 
-                        : s < step 
-                          ? 'bg-green-500 text-white' 
-                          : 'bg-white/30 text-white'
-                    }`}>
-                      {s < step ? '✓' : s}
+                  <div key={s} className="flex-1 flex items-center">
+                    <div className="flex flex-col items-center flex-1">
+                      <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 ${
+                        s === step 
+                          ? 'bg-[#C9A84C] text-black ring-4 ring-[#C9A84C]/30' 
+                          : s < step 
+                            ? 'bg-[#C9A84C]/20 text-[#C9A84C] border border-[#C9A84C]/40' 
+                            : 'bg-white/[0.06] text-white/30'
+                      }`}>
+                        {s < step ? '✓' : s}
+                      </div>
+                      <p className={`text-[10px] font-mono uppercase mt-2 tracking-wider ${
+                        s === step ? 'text-[#C9A84C]' : 'text-white/30'
+                      }`}>
+                        Étape {s}
+                      </p>
                     </div>
-                    {s < 3 && <div className={`w-16 h-1 mx-2 rounded-full transition-all duration-300 ${s < step ? 'bg-green-500' : 'bg-white/30'}`} />}
+                    {s < 3 && <div className={`flex-1 h-[1px] mx-2 transition-all duration-300 ${s < step ? 'bg-[#C9A84C]' : 'bg-white/[0.06]'}`} />}
                   </div>
                 ))}
               </div>
             </div>
-          </div>
 
-          <div className="p-8 md:p-10">
-            {step === 1 && <Step1 data={formData} updateData={updateFormData} onNext={nextStep} />}
-            {step === 2 && <Step2 data={formData} updateData={updateFormData} onNext={nextStep} onPrev={prevStep} />}
-            {step === 3 && <Step3 data={formData as DevisFormData} onSubmit={handleSubmit} onPrev={prevStep} loading={loading} />}
-            
-            {result?.error && !result.success && step !== 4 && (
-              <div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 animate-fade-in">
-                {result.error}
-              </div>
-            )}
+            <div className="p-6 md:p-8">
+              {step === 1 && <Step1 data={formData} updateData={updateFormData} onNext={nextStep} />}
+              {step === 2 && <Step2 data={formData} updateData={updateFormData} onNext={nextStep} onPrev={prevStep} />}
+              {step === 3 && <Step3 data={formData as DevisFormData} onSubmit={handleSubmit} onPrev={prevStep} loading={loading} />}
+              
+              {result?.error && !result.success && step !== 4 && (
+                <div className="mt-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-sm">
+                  {result.error}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-8 flex flex-wrap justify-center gap-6">
+          <div className="flex items-center gap-2">
+            <Zap size={14} className="text-[#C9A84C]" />
+            <span className="font-mono text-[10px] uppercase text-white/30">Intervention moins de 2h</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Shield size={14} className="text-[#C9A84C]" />
+            <span className="font-mono text-[10px] uppercase text-white/30">Certifié Qualibat</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Star size={14} className="text-[#C9A84C]" />
+            <span className="font-mono text-[10px] uppercase text-white/30">Note 4.9 / 5</span>
           </div>
         </div>
       </div>

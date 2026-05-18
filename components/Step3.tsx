@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { DevisFormData } from '@/types';
+import { ArrowRight, ArrowLeft } from 'lucide-react';
 
 interface Step3Props {
   data: DevisFormData;
@@ -43,93 +44,88 @@ export default function Step3({ data, onSubmit, onPrev, loading }: Step3Props) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2 className="text-xl font-semibold mb-4">Vos coordonnées</h2>
-      
-      <div className="mb-4">
-        <label htmlFor="nom" className="block text-gray-700 mb-2">
+    <form onSubmit={handleSubmit} className="space-y-6 animate-fade-in-up">
+      <div>
+        <label className="block font-mono text-[11px] uppercase tracking-[0.15em] text-white/50 mb-2">
           Nom complet *
         </label>
         <input
           type="text"
-          id="nom"
           value={formData.nom}
           onChange={(e) => setFormData({ ...formData, nom: e.target.value })}
-          className={`w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-            errors.nom ? 'border-red-500' : 'border-gray-300'
+          className={`w-full px-4 py-3 bg-[#1A1A1A] border rounded-lg text-white placeholder-white/20 focus:outline-none transition-all duration-200 ${
+            errors.nom ? 'border-red-500/50 focus:border-red-500' : 'border-white/[0.06] focus:border-[#C9A84C]/50'
           }`}
           required
         />
-        {errors.nom && <p className="text-red-500 text-sm mt-1">{errors.nom}</p>}
+        {errors.nom && <p className="text-red-400 text-xs mt-1 font-mono">{errors.nom}</p>}
       </div>
 
-      <div className="mb-4">
-        <label htmlFor="email" className="block text-gray-700 mb-2">
+      <div>
+        <label className="block font-mono text-[11px] uppercase tracking-[0.15em] text-white/50 mb-2">
           Email *
         </label>
         <input
           type="email"
-          id="email"
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          className={`w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-            errors.email ? 'border-red-500' : 'border-gray-300'
+          className={`w-full px-4 py-3 bg-[#1A1A1A] border rounded-lg text-white placeholder-white/20 focus:outline-none transition-all duration-200 ${
+            errors.email ? 'border-red-500/50 focus:border-red-500' : 'border-white/[0.06] focus:border-[#C9A84C]/50'
           }`}
           required
         />
-        {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+        {errors.email && <p className="text-red-400 text-xs mt-1 font-mono">{errors.email}</p>}
       </div>
 
-      <div className="mb-4">
-        <label htmlFor="telephone" className="block text-gray-700 mb-2">
+      <div>
+        <label className="block font-mono text-[11px] uppercase tracking-[0.15em] text-white/50 mb-2">
           Téléphone *
         </label>
         <input
           type="tel"
-          id="telephone"
           value={formData.telephone}
           onChange={(e) => setFormData({ ...formData, telephone: e.target.value })}
           placeholder="0612345678"
-          className={`w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-            errors.telephone ? 'border-red-500' : 'border-gray-300'
+          className={`w-full px-4 py-3 bg-[#1A1A1A] border rounded-lg text-white placeholder-white/20 focus:outline-none transition-all duration-200 ${
+            errors.telephone ? 'border-red-500/50 focus:border-red-500' : 'border-white/[0.06] focus:border-[#C9A84C]/50'
           }`}
           required
         />
-        {errors.telephone && <p className="text-red-500 text-sm mt-1">{errors.telephone}</p>}
+        {errors.telephone && <p className="text-red-400 text-xs mt-1 font-mono">{errors.telephone}</p>}
       </div>
 
-      <div className="mb-6">
-        <label htmlFor="message" className="block text-gray-700 mb-2">
+      <div>
+        <label className="block font-mono text-[11px] uppercase tracking-[0.15em] text-white/50 mb-2">
           Message (optionnel - max 500 caractères)
         </label>
         <textarea
-          id="message"
           value={formData.message || ''}
-          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+          onChange={(e) => setFormData({ ...formData, message: e.target.value.slice(0, 500) })}
           maxLength={500}
           rows={4}
-          className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4 py-3 bg-[#1A1A1A] border border-white/[0.06] rounded-lg text-white placeholder-white/20 focus:border-[#C9A84C]/50 focus:outline-none transition-all duration-200 resize-none"
         />
-        <p className="text-gray-500 text-sm mt-1">
+        <p className="text-white/30 text-right text-xs mt-1 font-mono">
           {formData.message?.length || 0}/500 caractères
         </p>
       </div>
 
-      <div className="flex space-x-4">
+      <div className="flex gap-4">
         <button
           type="button"
           onClick={onPrev}
-          className="flex-1 bg-gray-300 text-gray-700 py-2 rounded hover:bg-gray-400 transition"
-          disabled={loading}
+          className="flex-1 bg-white/[0.06] text-white py-3 rounded-lg font-black uppercase tracking-[0.15em] text-sm flex items-center justify-center gap-2 hover:bg-white/[0.1] transition-all duration-300 group"
         >
+          <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
           Précédent
         </button>
         <button
           type="submit"
-          className="flex-1 bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition disabled:opacity-50"
           disabled={loading}
+          className="flex-1 bg-[#C9A84C] text-black py-3 rounded-lg font-black uppercase tracking-[0.15em] text-sm flex items-center justify-center gap-2 hover:bg-[#E6C76A] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group"
         >
-          {loading ? 'Envoi en cours...' : 'Envoyer la demande'}
+          {loading ? 'Envoi...' : 'Envoyer'}
+          {!loading && <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />}
         </button>
       </div>
     </form>

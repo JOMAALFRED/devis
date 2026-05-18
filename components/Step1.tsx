@@ -1,6 +1,7 @@
 'use client';
 
 import { DevisFormData, Etablissement } from '@/types';
+import { ArrowRight } from 'lucide-react';
 
 interface Step1Props {
   data: Partial<DevisFormData>;
@@ -17,27 +18,27 @@ export default function Step1({ data, updateData, onNext }: Step1Props) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 animate-fade-in">
+    <form onSubmit={handleSubmit} className="space-y-6 animate-fade-in-up">
       <div>
-        <label className="block text-gray-700 font-semibold mb-2">
+        <label className="block font-mono text-[11px] uppercase tracking-[0.15em] text-white/50 mb-2">
           Type d'établissement *
         </label>
         <select
           value={data.etablissement || ''}
           onChange={(e) => updateData({ etablissement: e.target.value as Etablissement })}
-          className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 bg-gray-50 hover:bg-white"
+          className="w-full px-4 py-3 bg-[#1A1A1A] border border-white/[0.06] rounded-lg text-white focus:border-[#C9A84C]/50 focus:outline-none transition-all duration-200"
           required
         >
           <option value="">Sélectionnez votre type d'établissement</option>
-          <option value="Restaurant">🍽️ Restaurant</option>
-          <option value="Hôtel">🏨 Hôtel</option>
-          <option value="Copropriété">🏢 Copropriété</option>
-          <option value="Autre">📋 Autre</option>
+          <option value="Restaurant">Restaurant</option>
+          <option value="Hôtel">Hôtel</option>
+          <option value="Copropriété">Copropriété</option>
+          <option value="Autre">Autre</option>
         </select>
       </div>
 
       <div>
-        <label className="block text-gray-700 font-semibold mb-2">
+        <label className="block font-mono text-[11px] uppercase tracking-[0.15em] text-white/50 mb-2">
           Surface (m²) * - Min 10, Max 50000
         </label>
         <input
@@ -47,17 +48,17 @@ export default function Step1({ data, updateData, onNext }: Step1Props) {
           min="10"
           max="50000"
           placeholder="Ex: 150"
-          className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 bg-gray-50 hover:bg-white"
+          className="w-full px-4 py-3 bg-[#1A1A1A] border border-white/[0.06] rounded-lg text-white placeholder-white/20 focus:border-[#C9A84C]/50 focus:outline-none transition-all duration-200"
           required
         />
-        <p className="text-sm text-gray-500 mt-1">Surface en mètres carrés</p>
       </div>
 
       <button
         type="submit"
-        className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+        className="w-full bg-[#C9A84C] text-black py-3 rounded-lg font-black uppercase tracking-[0.15em] text-sm flex items-center justify-center gap-2 hover:bg-[#E6C76A] transition-all duration-300 group"
       >
-        Continuer →
+        Continuer
+        <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
       </button>
     </form>
   );
