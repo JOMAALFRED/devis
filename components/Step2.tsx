@@ -30,42 +30,42 @@ export default function Step2({ data, updateData, onNext, onPrev }: Step2Props) 
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 animate-fade-in-up">
+    <form onSubmit={handleSubmit} className="space-y-6">
       <div>
-        <label className="block font-mono text-[11px] uppercase tracking-[0.15em] text-white/50 mb-3">
+        <label className="block font-mono text-[11px] uppercase tracking-[0.15em] text-[#1F2A44]/60 mb-3">
           Types de nuisibles * (Plusieurs choix possibles)
         </label>
         <div className="space-y-2">
           {nuisiblesList.map((nuisible) => (
-            <label key={nuisible} className="flex items-center gap-3 p-3 bg-[#1A1A1A] border border-white/[0.06] rounded-lg cursor-pointer hover:border-[#C9A84C]/30 transition-all duration-200">
+            <label key={nuisible} className="flex items-center gap-3 p-3 bg-[#E8DCC8]/30 border border-[#C6A75E]/30 rounded-lg cursor-pointer hover:border-[#C6A75E] transition-all duration-200">
               <input
                 type="checkbox"
                 checked={data.nuisibles?.includes(nuisible) || false}
                 onChange={() => handleNuisibleChange(nuisible)}
-                className="w-4 h-4 accent-[#C9A84C]"
+                className="w-4 h-4 accent-[#C6A75E]"
               />
-              <span className="text-white text-sm">{nuisible}</span>
+              <span className="text-[#1F2A44] text-sm">{nuisible}</span>
             </label>
           ))}
         </div>
       </div>
 
       <div>
-        <label className="block font-mono text-[11px] uppercase tracking-[0.15em] text-white/50 mb-3">
+        <label className="block font-mono text-[11px] uppercase tracking-[0.15em] text-[#1F2A44]/60 mb-3">
           Type d'urgence *
         </label>
         <div className="space-y-2">
           {urgenceList.map((urgence) => (
-            <label key={urgence} className="flex items-center gap-3 p-3 bg-[#1A1A1A] border border-white/[0.06] rounded-lg cursor-pointer hover:border-[#C9A84C]/30 transition-all duration-200">
+            <label key={urgence} className="flex items-center gap-3 p-3 bg-[#E8DCC8]/30 border border-[#C6A75E]/30 rounded-lg cursor-pointer hover:border-[#C6A75E] transition-all duration-200">
               <input
                 type="radio"
                 name="urgence"
                 value={urgence}
                 checked={data.urgence === urgence}
                 onChange={(e) => updateData({ urgence: e.target.value as Urgence })}
-                className="w-4 h-4 accent-[#C9A84C]"
+                className="w-4 h-4 accent-[#C6A75E]"
               />
-              <span className="text-white text-sm">{urgence}</span>
+              <span className="text-[#1F2A44] text-sm">{urgence}</span>
             </label>
           ))}
         </div>
@@ -75,14 +75,14 @@ export default function Step2({ data, updateData, onNext, onPrev }: Step2Props) 
         <button
           type="button"
           onClick={onPrev}
-          className="flex-1 bg-white/[0.06] text-white py-3 rounded-lg font-black uppercase tracking-[0.15em] text-sm flex items-center justify-center gap-2 hover:bg-white/[0.1] transition-all duration-300 group"
+          className="flex-1 bg-[#1F2A44] text-white py-3 rounded-lg font-black uppercase tracking-[0.15em] text-sm flex items-center justify-center gap-2 hover:bg-[#2A3855] transition-all duration-300 group"
         >
           <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
           Précédent
         </button>
         <button
           type="submit"
-          className="flex-1 bg-[#C9A84C] text-black py-3 rounded-lg font-black uppercase tracking-[0.15em] text-sm flex items-center justify-center gap-2 hover:bg-[#E6C76A] transition-all duration-300 group"
+          className="flex-1 bg-[#C6A75E] text-[#1F2A44] py-3 rounded-lg font-black uppercase tracking-[0.15em] text-sm flex items-center justify-center gap-2 hover:bg-[#B8963A] transition-all duration-300 group"
         >
           Suivant
           <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />

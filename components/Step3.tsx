@@ -44,41 +44,41 @@ export default function Step3({ data, onSubmit, onPrev, loading }: Step3Props) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 animate-fade-in-up">
+    <form onSubmit={handleSubmit} className="space-y-6">
       <div>
-        <label className="block font-mono text-[11px] uppercase tracking-[0.15em] text-white/50 mb-2">
+        <label className="block font-mono text-[11px] uppercase tracking-[0.15em] text-[#1F2A44]/60 mb-2">
           Nom complet *
         </label>
         <input
           type="text"
           value={formData.nom}
           onChange={(e) => setFormData({ ...formData, nom: e.target.value })}
-          className={`w-full px-4 py-3 bg-[#1A1A1A] border rounded-lg text-white placeholder-white/20 focus:outline-none transition-all duration-200 ${
-            errors.nom ? 'border-red-500/50 focus:border-red-500' : 'border-white/[0.06] focus:border-[#C9A84C]/50'
+          className={`w-full px-4 py-3 bg-[#E8DCC8]/30 border rounded-lg text-[#1F2A44] placeholder-[#1F2A44]/30 focus:outline-none transition-all duration-200 ${
+            errors.nom ? 'border-red-500 focus:border-red-500' : 'border-[#C6A75E]/30 focus:border-[#C6A75E]'
           }`}
           required
         />
-        {errors.nom && <p className="text-red-400 text-xs mt-1 font-mono">{errors.nom}</p>}
+        {errors.nom && <p className="text-red-500 text-xs mt-1 font-mono">{errors.nom}</p>}
       </div>
 
       <div>
-        <label className="block font-mono text-[11px] uppercase tracking-[0.15em] text-white/50 mb-2">
+        <label className="block font-mono text-[11px] uppercase tracking-[0.15em] text-[#1F2A44]/60 mb-2">
           Email *
         </label>
         <input
           type="email"
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          className={`w-full px-4 py-3 bg-[#1A1A1A] border rounded-lg text-white placeholder-white/20 focus:outline-none transition-all duration-200 ${
-            errors.email ? 'border-red-500/50 focus:border-red-500' : 'border-white/[0.06] focus:border-[#C9A84C]/50'
+          className={`w-full px-4 py-3 bg-[#E8DCC8]/30 border rounded-lg text-[#1F2A44] placeholder-[#1F2A44]/30 focus:outline-none transition-all duration-200 ${
+            errors.email ? 'border-red-500 focus:border-red-500' : 'border-[#C6A75E]/30 focus:border-[#C6A75E]'
           }`}
           required
         />
-        {errors.email && <p className="text-red-400 text-xs mt-1 font-mono">{errors.email}</p>}
+        {errors.email && <p className="text-red-500 text-xs mt-1 font-mono">{errors.email}</p>}
       </div>
 
       <div>
-        <label className="block font-mono text-[11px] uppercase tracking-[0.15em] text-white/50 mb-2">
+        <label className="block font-mono text-[11px] uppercase tracking-[0.15em] text-[#1F2A44]/60 mb-2">
           Téléphone *
         </label>
         <input
@@ -86,16 +86,16 @@ export default function Step3({ data, onSubmit, onPrev, loading }: Step3Props) {
           value={formData.telephone}
           onChange={(e) => setFormData({ ...formData, telephone: e.target.value })}
           placeholder="0612345678"
-          className={`w-full px-4 py-3 bg-[#1A1A1A] border rounded-lg text-white placeholder-white/20 focus:outline-none transition-all duration-200 ${
-            errors.telephone ? 'border-red-500/50 focus:border-red-500' : 'border-white/[0.06] focus:border-[#C9A84C]/50'
+          className={`w-full px-4 py-3 bg-[#E8DCC8]/30 border rounded-lg text-[#1F2A44] placeholder-[#1F2A44]/30 focus:outline-none transition-all duration-200 ${
+            errors.telephone ? 'border-red-500 focus:border-red-500' : 'border-[#C6A75E]/30 focus:border-[#C6A75E]'
           }`}
           required
         />
-        {errors.telephone && <p className="text-red-400 text-xs mt-1 font-mono">{errors.telephone}</p>}
+        {errors.telephone && <p className="text-red-500 text-xs mt-1 font-mono">{errors.telephone}</p>}
       </div>
 
       <div>
-        <label className="block font-mono text-[11px] uppercase tracking-[0.15em] text-white/50 mb-2">
+        <label className="block font-mono text-[11px] uppercase tracking-[0.15em] text-[#1F2A44]/60 mb-2">
           Message (optionnel - max 500 caractères)
         </label>
         <textarea
@@ -103,9 +103,9 @@ export default function Step3({ data, onSubmit, onPrev, loading }: Step3Props) {
           onChange={(e) => setFormData({ ...formData, message: e.target.value.slice(0, 500) })}
           maxLength={500}
           rows={4}
-          className="w-full px-4 py-3 bg-[#1A1A1A] border border-white/[0.06] rounded-lg text-white placeholder-white/20 focus:border-[#C9A84C]/50 focus:outline-none transition-all duration-200 resize-none"
+          className="w-full px-4 py-3 bg-[#E8DCC8]/30 border border-[#C6A75E]/30 rounded-lg text-[#1F2A44] placeholder-[#1F2A44]/30 focus:border-[#C6A75E] focus:outline-none transition-all duration-200 resize-none"
         />
-        <p className="text-white/30 text-right text-xs mt-1 font-mono">
+        <p className="text-[#1F2A44]/40 text-right text-xs mt-1 font-mono">
           {formData.message?.length || 0}/500 caractères
         </p>
       </div>
@@ -114,7 +114,7 @@ export default function Step3({ data, onSubmit, onPrev, loading }: Step3Props) {
         <button
           type="button"
           onClick={onPrev}
-          className="flex-1 bg-white/[0.06] text-white py-3 rounded-lg font-black uppercase tracking-[0.15em] text-sm flex items-center justify-center gap-2 hover:bg-white/[0.1] transition-all duration-300 group"
+          className="flex-1 bg-[#1F2A44] text-white py-3 rounded-lg font-black uppercase tracking-[0.15em] text-sm flex items-center justify-center gap-2 hover:bg-[#2A3855] transition-all duration-300 group"
         >
           <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
           Précédent
@@ -122,7 +122,7 @@ export default function Step3({ data, onSubmit, onPrev, loading }: Step3Props) {
         <button
           type="submit"
           disabled={loading}
-          className="flex-1 bg-[#C9A84C] text-black py-3 rounded-lg font-black uppercase tracking-[0.15em] text-sm flex items-center justify-center gap-2 hover:bg-[#E6C76A] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group"
+          className="flex-1 bg-[#C6A75E] text-[#1F2A44] py-3 rounded-lg font-black uppercase tracking-[0.15em] text-sm flex items-center justify-center gap-2 hover:bg-[#B8963A] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group"
         >
           {loading ? 'Envoi...' : 'Envoyer'}
           {!loading && <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />}
