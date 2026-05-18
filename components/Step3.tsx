@@ -114,7 +114,7 @@ export default function Step3({ data, onSubmit, onPrev, loading }: Step3Props) {
         <button
           type="button"
           onClick={onPrev}
-          className="flex-1 bg-[#1F2A44] text-white py-3 rounded-lg font-black uppercase tracking-[0.15em] text-sm flex items-center justify-center gap-2 hover:bg-[#2A3855] transition-all duration-300 group"
+          className="flex-1 bg-[#1F2A44] text-white py-3 rounded-lg font-semibold uppercase tracking-[0.15em] text-sm flex items-center justify-center gap-2 hover:bg-[#2A3855] transition-all duration-300 group"
         >
           <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
           Précédent
@@ -122,7 +122,7 @@ export default function Step3({ data, onSubmit, onPrev, loading }: Step3Props) {
         <button
           type="submit"
           disabled={loading}
-          className="flex-1 bg-[#C6A75E] text-[#1F2A44] py-3 rounded-lg font-black uppercase tracking-[0.15em] text-sm flex items-center justify-center gap-2 hover:bg-[#B8963A] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group"
+          className="flex-1 bg-[#C6A75E] text-[#1F2A44] py-3 rounded-lg font-semibold uppercase tracking-[0.15em] text-sm flex items-center justify-center gap-2 hover:bg-[#B8963A] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group"
         >
           {loading ? 'Envoi...' : 'Envoyer'}
           {!loading && <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />}

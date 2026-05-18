@@ -2,12 +2,11 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { Phone, Menu, X, ArrowUpRight, ChevronDown, Shield } from 'lucide-react';
+import { Phone, Menu, X, ArrowUpRight, Shield } from 'lucide-react';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60);
@@ -16,21 +15,17 @@ export default function Header() {
   }, []);
 
   const navItems = [
-    { name: 'Accueil', href: '/', icon: null },
-    { name: 'Services', href: '#services', icon: ChevronDown, submenu: [
-      { name: 'Dératisation', href: '#services' },
-      { name: 'Désinsectisation', href: '#services' },
-      { name: 'Désinfection', href: '#services' },
-    ]},
-    { name: 'Devis', href: '/devis', icon: null },
-    { name: 'Contact', href: '#contact', icon: null },
+    { name: 'Accueil', href: '/' },
+    { name: 'Services', href: '#services' },
+    { name: 'Devis', href: '/devis' },
+    { name: 'Contact', href: '#contact' },
   ];
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'border-b border-[#C6A75E]/20 bg-[#1F2A44]/95 backdrop-blur-xl shadow-2xl'
+          ? 'border-b border-[#C6A75E]/20 bg-[#1F2A44]/95 backdrop-blur-xl shadow-lg'
           : 'border-transparent bg-transparent'
       }`}
     >
@@ -38,7 +33,7 @@ export default function Header() {
         <div className="flex h-16 items-center justify-between lg:h-20">
           {/* Logo */}
           <Link href="/" className="group flex shrink-0 items-center gap-3">
-            <div className="relative flex h-9 w-9 items-center justify-center overflow-hidden border border-[#C6A75E]/40 bg-[#C6A75E]/10 transition-all duration-300 group-hover:border-[#C6A75E] group-hover:shadow-lg sm:h-10 sm:w-10">
+            <div className="relative flex h-9 w-9 items-center justify-center overflow-hidden border border-[#C6A75E]/40 bg-[#C6A75E]/10 transition-all duration-300 group-hover:border-[#C6A75E] sm:h-10 sm:w-10">
               <Shield size={18} className="text-[#C6A75E] transition-transform duration-300 group-hover:scale-110" />
             </div>
             <div className="hidden sm:block">
@@ -51,37 +46,20 @@ export default function Header() {
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Navigation Desktop */}
           <nav className="hidden md:flex items-center gap-6 lg:gap-10">
             {navItems.map((item) => (
-              <div key={item.name} className="relative group">
-                <Link
-                  href={item.href}
-                  className="flex items-center gap-1 font-mono text-[11px] uppercase tracking-[0.15em] text-white/70 transition-colors duration-300 hover:text-[#C6A75E] lg:text-xs"
-                >
-                  {item.name}
-                  {item.icon && <item.icon size={12} className="transition-transform duration-300 group-hover:rotate-180" />}
-                </Link>
-                {item.submenu && (
-                  <div className="absolute top-full left-0 mt-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                    <div className="bg-[#1F2A44] border border-[#C6A75E]/20 rounded-lg overflow-hidden shadow-xl">
-                      {item.submenu.map((sub) => (
-                        <Link
-                          key={sub.name}
-                          href={sub.href}
-                          className="block px-4 py-2 text-xs text-white/70 hover:text-[#C6A75E] hover:bg-[#2A3855] transition-colors"
-                        >
-                          {sub.name}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
+              <Link
+                key={item.name}
+                href={item.href}
+                className="font-mono text-[11px] uppercase tracking-[0.15em] text-white/70 transition-colors duration-300 hover:text-[#C6A75E] lg:text-xs"
+              >
+                {item.name}
+              </Link>
             ))}
           </nav>
 
-          {/* Right section */}
+          {/* Téléphone et menu mobile */}
           <div className="flex shrink-0 items-center gap-3 sm:gap-4">
             <a
               href="tel:0123456789"

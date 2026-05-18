@@ -1,236 +1,138 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useRef } from 'react';
-import { Mail, MapPin, Phone, ArrowUpRight, CheckCircle2, Send } from 'lucide-react';
-
-const LINKS_NAV = [
-  { label: 'Accueil', href: '/' },
-  { label: 'Nos services', href: '#services' },
-  { label: 'Demande de devis', href: '/devis' },
-  { label: 'Contact', href: '#contact' },
-  { label: 'Urgence 24h/24', href: '#urgence' },
-];
-
-const LINKS_RESOURCES = [
-  'Actualités', 'Blog', 'Guides pratiques',
-  'Témoignages clients', 'FAQ', 'Vente Pro'
-];
-
-const SOCIALS = [
-  { label: 'Facebook', href: '#', abbr: 'Fb' },
-  { label: 'Instagram', href: '#', abbr: 'Ig' },
-  { label: 'LinkedIn', href: '#', abbr: 'Li' },
-  { label: 'YouTube', href: '#', abbr: 'Yt' },
-];
+import { useState } from 'react';
+import { Mail, MapPin, Phone, Shield, ArrowRight, CheckCircle } from 'lucide-react';
 
 export default function Footer() {
   const [email, setEmail] = useState('');
-  const [status, setStatus] = useState<'idle' | 'success' | 'loading'>('idle');
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [subscribed, setSubscribed] = useState(false);
 
-  const handleNewsletter = async (e: React.FormEvent) => {
+  const handleNewsletter = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email.trim()) return;
-    setStatus('loading');
-    await new Promise((r) => setTimeout(r, 800));
-    setStatus('success');
-    setEmail('');
-    setTimeout(() => setStatus('idle'), 4000);
+    if (email) {
+      setSubscribed(true);
+      setEmail('');
+      setTimeout(() => setSubscribed(false), 3000);
+    }
   };
 
   return (
-    <footer className="relative overflow-hidden bg-[#0A0A0A] text-white">
-      {/* Grain overlay */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-[0.035]"
-        style={{
-          backgroundImage:
-            'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E")',
-          backgroundSize: '200px 200px',
-        }}
-      />
-
-      {/* Gold top border */}
-      <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent" />
-
-      {/* Newsletter band */}
-      <div className="border-b border-white/[0.06]">
-        <div className="mx-auto max-w-7xl px-6 py-14 md:px-12">
-          <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-            <div className="max-w-lg">
-              <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.2em] text-[#C9A84C]">
-                Newsletter mensuelle
-              </p>
-              <h2
-                className="text-4xl font-black leading-[1.05] tracking-tight md:text-5xl"
-                style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-              >
-                Conseils & offres<br />
-                <span className="italic text-[#C9A84C]">en exclusivité</span>
-              </h2>
+    <footer className="bg-[#1F2A44] text-white border-t border-[#C6A75E]/20">
+      <div className="container mx-auto px-6 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+          {/* Colonne 1 */}
+          <div>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 bg-[#C6A75E]/10 rounded-xl flex items-center justify-center">
+                <Shield size={20} className="text-[#C6A75E]" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold">Dératisation Pro</h3>
+                <p className="text-xs text-[#C6A75E]/60">Experts certifiés</p>
+              </div>
             </div>
-            <form onSubmit={handleNewsletter} className="w-full max-w-md">
-              <div className="group relative flex items-center">
+            <p className="text-gray-400 mb-6 text-sm leading-relaxed">
+              Experts en désinfection, dératisation et désinsectisation à Paris et Île-de-France. 
+              Intervention rapide 24h/24, 7j/7.
+            </p>
+            <div className="space-y-3">
+              <div className="flex items-center gap-3 text-sm text-gray-400">
+                <Phone size="16" className="text-[#C6A75E]" />
+                <span>01 23 45 67 89</span>
+              </div>
+              <div className="flex items-center gap-3 text-sm text-gray-400">
+                <Mail size="16" className="text-[#C6A75E]" />
+                <span>contact@deratisation-paris.fr</span>
+              </div>
+              <div className="flex items-center gap-3 text-sm text-gray-400">
+                <MapPin size="16" className="text-[#C6A75E]" />
+                <span>75 001 Paris, France</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Colonne 2 */}
+          <div>
+            <h3 className="text-lg font-semibold mb-6 flex items-center gap-2">
+              <span className="w-8 h-0.5 bg-[#C6A75E]"></span>
+              Navigation
+            </h3>
+            <ul className="space-y-3">
+              {[
+                { name: 'Accueil', href: '/' },
+                { name: 'Nos services', href: '#services' },
+                { name: 'Demande de devis', href: '/devis' },
+                { name: 'FAQ', href: '#faq' },
+              ].map((item) => (
+                <li key={item.name}>
+                  <Link href={item.href} className="text-gray-400 hover:text-[#C6A75E] transition text-sm flex items-center gap-2 group">
+                    <ArrowRight size="12" className="opacity-0 group-hover:opacity-100 transition" />
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Colonne 3 */}
+          <div>
+            <h3 className="text-lg font-semibold mb-6 flex items-center gap-2">
+              <span className="w-8 h-0.5 bg-[#C6A75E]"></span>
+              Ressources
+            </h3>
+            <ul className="space-y-3">
+              {[
+                'Actualités', 'Blog', 'Guides pratiques', 
+                'Témoignages clients', 'FAQ', 'Contact'
+              ].map((item) => (
+                <li key={item}>
+                  <Link href="#" className="text-gray-400 hover:text-[#C6A75E] transition text-sm">
+                    {item}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Colonne 4 */}
+          <div>
+            <h3 className="text-lg font-semibold mb-6 flex items-center gap-2">
+              <span className="w-8 h-0.5 bg-[#C6A75E]"></span>
+              Newsletter
+            </h3>
+            <p className="text-gray-400 text-sm mb-4">
+              Recevez nos conseils et offres spéciales chaque mois !
+            </p>
+            <form onSubmit={handleNewsletter} className="space-y-3">
+              <div className="flex">
                 <input
-                  ref={inputRef}
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="votre@email.fr"
+                  placeholder="Votre adresse email"
+                  className="flex-1 px-4 py-2 bg-[#2A3855] border border-[#C6A75E]/20 rounded-l-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#C6A75E] text-sm"
                   required
-                  className="w-full border border-white/10 bg-white/[0.04] px-5 py-4 pr-14 text-sm text-white placeholder-white/25 outline-none transition-all duration-300 focus:border-[#C9A84C]/50 focus:bg-white/[0.07]"
-                  style={{ fontFamily: "'DM Mono', monospace" }}
                 />
                 <button
                   type="submit"
-                  disabled={status === 'loading'}
-                  className="absolute right-0 flex h-full w-12 items-center justify-center bg-[#C9A84C] text-black transition-all duration-200 hover:bg-[#E6C76A] disabled:opacity-60"
-                  aria-label="S'abonner"
+                  className="px-4 py-2 bg-[#C6A75E] text-[#1F2A44] rounded-r-lg hover:bg-[#B8963A] transition text-sm font-semibold"
                 >
-                  {status === 'loading' ? (
-                    <div className="h-4 w-4 animate-spin rounded-full border-2 border-black/30 border-t-black" />
-                  ) : (
-                    <Send size={15} />
-                  )}
+                  OK
                 </button>
               </div>
-              <div
-                className={`overflow-hidden transition-all duration-500 ${
-                  status === 'success' ? 'max-h-10 opacity-100' : 'max-h-0 opacity-0'
-                }`}
-              >
-                <p className="mt-3 flex items-center gap-2 font-mono text-xs text-emerald-400">
-                  <CheckCircle2 size={13} />
-                  Inscription confirmée — merci !
+              {subscribed && (
+                <p className="text-green-400 text-sm flex items-center gap-1">
+                  <CheckCircle size="14" />
+                  Merci de votre inscription !
                 </p>
-              </div>
+              )}
             </form>
           </div>
         </div>
-      </div>
 
-      {/* Main grid */}
-      <div className="mx-auto max-w-7xl px-6 py-16 md:px-12">
-        <div className="grid gap-12 md:grid-cols-12">
-          {/* Brand */}
-          <div className="md:col-span-4">
-            <Link href="/" className="group mb-8 inline-block">
-              <div className="flex items-center gap-3">
-                <div className="relative flex h-10 w-10 items-center justify-center overflow-hidden border border-[#C9A84C]/40">
-                  <div className="absolute inset-0 bg-[#C9A84C]/10" />
-                  <span
-                    className="relative text-lg font-black text-[#C9A84C]"
-                    style={{ fontFamily: "'Playfair Display', serif" }}
-                  >
-                    D
-                  </span>
-                </div>
-                <div>
-                  <p className="text-base font-black tracking-tight text-white">Dératisation Pro</p>
-                  <p className="font-mono text-[10px] uppercase tracking-widest text-white/30">Experts certifiés</p>
-                </div>
-              </div>
-            </Link>
-            <p className="mb-8 max-w-xs text-sm leading-relaxed text-white/45">
-              Désinfection, dératisation et désinsectisation à Paris & Île-de-France.
-              Intervention d'urgence 24h/24, 7j/7.
-            </p>
-            <ul className="space-y-3">
-              {[
-                { icon: Phone, value: '01 23 45 67 89' },
-                { icon: Mail, value: 'contact@deratisation-paris.fr' },
-                { icon: MapPin, value: '75 001 Paris, France' },
-              ].map(({ icon: Icon, value }) => (
-                <li key={value} className="flex items-center gap-3">
-                  <Icon size={13} className="shrink-0 text-[#C9A84C]" />
-                  <span className="font-mono text-[12px] text-white/40">{value}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Divider */}
-          <div className="hidden md:col-span-1 md:flex md:justify-center">
-            <div className="w-[1px] bg-gradient-to-b from-transparent via-white/10 to-transparent" />
-          </div>
-
-          {/* Nav */}
-          <div className="md:col-span-3">
-            <p className="mb-6 font-mono text-[10px] uppercase tracking-[0.2em] text-white/30">Navigation</p>
-            <ul className="space-y-1">
-              {LINKS_NAV.map((item) => (
-                <li key={item.label}>
-                  <Link
-                    href={item.href}
-                    className="group flex items-center justify-between border-b border-white/[0.04] py-2 text-sm text-white/50 transition-all duration-200 hover:border-[#C9A84C]/30 hover:text-white"
-                  >
-                    <span>{item.label}</span>
-                    <ArrowUpRight
-                      size={13}
-                      className="opacity-0 transition-all duration-200 group-hover:opacity-100"
-                    />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Resources */}
-          <div className="md:col-span-4">
-            <p className="mb-6 font-mono text-[10px] uppercase tracking-[0.2em] text-white/30">Ressources</p>
-            <ul className="space-y-1">
-              {LINKS_RESOURCES.map((item) => (
-                <li key={item}>
-                  <Link
-                    href="#"
-                    className="group flex items-center justify-between border-b border-white/[0.04] py-2 text-sm text-white/50 transition-all duration-200 hover:border-[#C9A84C]/30 hover:text-white"
-                  >
-                    <span>{item}</span>
-                    <ArrowUpRight
-                      size={13}
-                      className="opacity-0 transition-all duration-200 group-hover:opacity-100"
-                    />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      {/* Bottom bar */}
-      <div className="border-t border-white/[0.06]">
-        <div className="mx-auto max-w-7xl px-6 py-6 md:px-12">
-          <div className="flex flex-col items-start gap-5 md:flex-row md:items-center md:justify-between">
-            <p className="font-mono text-[11px] text-white/20">
-              © 2026 Dératisation Pro · Tous droits réservés
-            </p>
-            <nav className="flex flex-wrap gap-x-6 gap-y-1">
-              {['Confidentialité', 'Conditions', 'Cookies', 'Accessibilité'].map((item) => (
-                <Link
-                  key={item}
-                  href="#"
-                  className="font-mono text-[11px] text-white/20 transition-colors duration-200 hover:text-white/60"
-                >
-                  {item}
-                </Link>
-              ))}
-            </nav>
-            <div className="flex items-center gap-2">
-              {SOCIALS.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  aria-label={s.label}
-                  className="flex h-8 w-8 items-center justify-center border border-white/10 font-mono text-[10px] text-white/30 transition-all duration-200 hover:border-[#C9A84C]/50 hover:text-[#C9A84C]"
-                >
-                  {s.abbr}
-                </a>
-              ))}
-            </div>
-          </div>
+        <div className="border-t border-[#C6A75E]/10 pt-8 text-center text-gray-500 text-sm">
+          <p>© 2026 Dératisation Pro — Intervention 24h/24 — Devis gratuit</p>
         </div>
       </div>
     </footer>
